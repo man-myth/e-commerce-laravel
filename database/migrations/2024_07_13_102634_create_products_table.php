@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
@@ -12,10 +13,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->uuid("id");
+            $table->id();
             $table->string("name");
+            $table->string("description");
+            $table->json("tags")->default(new Expression('(JSON_ARRAY())'));
             $table->float("price");
-            $table->int("stock");
+            $table->integer("stock");
             $table->foreignId("category_id")->constrained()->cascadeOnUpdate();
             $table->timestamps();
         });

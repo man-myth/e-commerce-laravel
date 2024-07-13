@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory;
 
     protected $guarded = [
         "id",
     ];
 
     protected $casts = [
-        'images' => 'array',
+        'tags' => 'array',
     ];
 
     public function category()
@@ -26,5 +26,10 @@ class Product extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
     }
 }

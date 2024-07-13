@@ -12,9 +12,6 @@ class Review extends Model
         'id',
     ];
 
-    protected $casts = [
-        'images' => 'array',
-    ];
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -22,5 +19,11 @@ class Review extends Model
 
     public function product(){
         return $this->belongsTo(Product::class);
+    }
+
+    
+    public function images()
+    {
+        return $this->hasMany(ReviewImage::class);
     }
 }
