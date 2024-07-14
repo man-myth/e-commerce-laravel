@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
-            'password' => 'admin'
+            'password' => 'admin',
+            'is_admin' => true
         ]);
 
         $categories = ['Mobile', 'TV', 'Audio', 'Home Appliances'];
