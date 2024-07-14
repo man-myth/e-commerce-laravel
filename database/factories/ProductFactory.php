@@ -25,7 +25,7 @@ class ProductFactory extends Factory
             array_push($tags, fake()->word());
         }
         return [
-            'name'=> fake()->name(),
+            'name'=> fake()-> sentence(),
             'tags'=> $tags,
             'description' => fake()->text(),
             'price' => fake()->numberBetween(100, 10000),

@@ -45,10 +45,12 @@ class DatabaseSeeder extends Seeder
 
             Review::factory()->count(rand(0,10))->create([
                 'product_id' => $p->id,
-                'user_id' => rand(1,10)
+                'user_id' => function () {
+                    return User::inRandomOrder()->first()->id;
+                }        
             ]);
 
-            ProductImage::factory()->count(rand(0,4))->create([
+            ProductImage::factory()->count(rand(1,4))->create([
                 'product_id' => $p->id,
             ]);
         });
