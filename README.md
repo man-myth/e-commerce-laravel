@@ -41,6 +41,7 @@ SCHEMA
     - postcode
     - address
     - phone
+    - isadmin
 
 5. Product (x)
     - id (pk)

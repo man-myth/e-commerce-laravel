@@ -78,8 +78,6 @@
 
                 <x-primary-button type="submit">Post</x-primary-button>
             </form>
-
-
         @endauth
 
         @guest
