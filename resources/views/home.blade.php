@@ -14,7 +14,7 @@
             @foreach ($products as $product)
                 <a href="{{ route('product.details', ['id' => $product->id]) }}"
                     class="overflow-hidden text-left transition-transform bg-white shadow-lg h-72 rounded-2xl hover:-translate-y-1">
-                    <div class="bg-center bg-cover h-3/5" style="background-image: url('{{ asset('images/' .  $product->images->first()->url )}}');"></div>
+                    <div class="bg-center bg-cover h-3/5" style="background-image:url('{{asset("images/products/" . $product->images->first()->url ) }}') "></div>
                     <div class="flex flex-col justify-between p-3 h-2/5">
                         <h2 class="text-lg font-semibold leading-tight">{{ Str::limit($product->name, 45) }}</h2>
                         <div class="flex items-center justify-between">

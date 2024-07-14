@@ -31,7 +31,7 @@ class ProductController extends Controller
             'price' => 'required|decimal:0,3|min:0',
             'stock' => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
-            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'images.*' => 'required|image',
        ]);
        //convert tags
        $tagsArray = explode("," , $validated['tags']);
@@ -42,8 +42,8 @@ class ProductController extends Controller
        //save image
        if ($request->hasFile('images')) {
         foreach ($request->file('images') as $image) {
-            $imageName = time() . '-' . $image->getClientOriginalName();
-            $image->move(public_path('images'), $imageName);
+            $imageName =  $product->id . '-' .time() . '-' .$image->getClientOriginalName();
+            $image->move(public_path('images\products'), $imageName);
            
             $product->images()->create([
                 'url'=> $imageName

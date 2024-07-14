@@ -9,7 +9,7 @@
                     @endforeach
                 </div> --}}
 
-                <img class="object-cover w-full rounded-lg shadow-md" src="{{ asset('images/' .  $product->images->first()->url ) }}"
+                <img class="object-cover w-full rounded-lg shadow-md" src="{{asset("images/products/" . $product->images->first()->url)}} "
                     alt="{{ $product->name }}">
             </div>
             <div class="w-full mt-4 md:w-1/2 md:ml-8 md:mt-0">
