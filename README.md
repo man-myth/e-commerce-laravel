@@ -1,9 +1,10 @@
 Todo:
 
 - [x] View all items in database even not logged in
-- view product details, comments
+- [x]view product details, comments
 - add to cart (looged in or not logged in)
-- only admin can add or delete items
+- [x] only admin can add items
+- admin can update or delete a product
 - only logged in users can comment
 
 
@@ -43,7 +44,7 @@ SCHEMA
     - phone
     - isadmin
 
-5. Product (x)
+5. Product 
     - id (pk)
     - tags (json)
     - name (string)
@@ -52,7 +53,7 @@ SCHEMA
     - stock (int)
     - category_id (FK Category) OUC
 
-6. Category (x)
+6. Category
     - id 
     - name
     - description
