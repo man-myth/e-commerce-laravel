@@ -1,8 +1,10 @@
 Todo:
 
-1. View all items in database even not logged in
-2. add to cart
-3. add admin to post and remove items
+- [x] View all items in database even not logged in
+- view product details, comments
+- add to cart (looged in or not logged in)
+- only admin can add or delete items
+- only logged in users can comment
 
 
 SCHEMA
