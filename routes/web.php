@@ -1,45 +1,29 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\Framework\Attributes\Group;
 
-Route::get('/', function () {
-    $products = Product::all();
-
-    foreach ($products as $product) {
-        $product->image = Product::find($product->id)->images()->first()->url;
-
-    };
-
-    return view('home', ['products' => $products] );  
-})->name('home');
-
+Route::get('/', [ProductController::class, 'getAll'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard' );
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-
-
 Route::middleware('auth')-> group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/product/create', function () {
-        $categories = Category::all();
-        return view('product.create', ['categories'=>$categories]);
-    })->can('create', Product::class)->name('product.add');
-    
+    Route::get('/product/create', [CategoryController::class, 'get'])->can('create', Product::class)->name('product.create');
+    Route::post('/product/create', [ProductController::class, 'store'])->can('create', Product::class)->name('product.store');
 });
 
 
-Route::get('/product/{id}', function ($id) {
-    $product = Product::find($id);
-
-    return view('product-details', ['product' => $product] );  
-})->name('product.details');
+Route::get('/product/{id}', [ProductController::class, 'get'])->name('product.details');
 
 require __DIR__.'/auth.php';
