@@ -1,5 +1,5 @@
 <x-app-layout>
-    <form method="POST" action="{{ route('product.store') }}" class="max-w-sm mx-auto mt-6" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('product.add') }}" class="max-w-sm mx-auto mt-6" enctype="multipart/form-data">
         @csrf
 
         <h1

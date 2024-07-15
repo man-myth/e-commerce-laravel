@@ -43,15 +43,17 @@
                 </div>
             </div>
 
-
+        {{-- PRODUCT LOGO --}}
             <h1 class="my-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
                 <span class="text-transparent bg-clip-text bg-gradient-to-r to-primary from-secondary">Lara</span>Shop
             </h1>
-            <!-- Settings/login Dropdown -->
+
+            
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <nav class="flex items-center justify-end flex-1 gap-4 -mx-3">
+                {{-- add product --}}
                     @can('create', App\Models\Product::class)
-                        <x-nav-link :href="route('product.create')" >
+                        <x-nav-link :href="route('product.index')" >
                             <svg class="w-[24px] h-[24px" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                 viewBox="0 0 24 24">
@@ -61,7 +63,7 @@
                         </x-nav-link>
                     @endcan
 
-                    <x-nav-link href="#" >
+                    <x-nav-link :href="route('cart.index')" :active>
                         <svg class="w-[24px] h-[24px]" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">

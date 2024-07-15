@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function get(){
+    public function index(){
         $categories = Category::all();
         return view('product.create', ['categories'=>$categories]);
     }

@@ -28,7 +28,7 @@ class ProductController extends Controller
     }
 
 
-    public function store(Request $request):RedirectResponse
+    public function add(Request $request):RedirectResponse
     {   
     
        $validated = $request->validate([
