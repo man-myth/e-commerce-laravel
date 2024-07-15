@@ -63,7 +63,7 @@
                         </x-nav-link>
                     @endcan
 
-                    <x-nav-link :href="route('cart.index')" :active>
+                    <x-nav-link :href="route('cart')" :active>
                         <svg class="w-[24px] h-[24px]" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">

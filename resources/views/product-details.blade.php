@@ -9,8 +9,8 @@
                     @endforeach
                 </div> --}}
 
-                <img class="object-cover w-full rounded-lg shadow-md" src="{{asset("images/products/" . $product->images->first()->url)}} "
-                    alt="{{ $product->name }}">
+                <img class="object-cover w-full rounded-lg shadow-md"
+                    src="{{ asset('images/products/' . $product->images->first()->url) }} " alt="{{ $product->name }}">
             </div>
             <div class="w-full mt-4 md:w-1/2 md:ml-8 md:mt-0">
                 <h1 class="text-3xl font-bold">{{ $product->name }}</h1>
@@ -20,10 +20,12 @@
                     <span class="ml-4 text-gray-600">Stock: {{ $product->stock }}</span>
                 </div>
                 <div class="mt-6">
-                    <button
-                        class="px-6 py-2 font-bold text-white bg-blue-500 rounded-lg shadow hover:bg-blue-600 focus:outline-none">
-                        Add to Cart
-                    </button>
+
+                    <form method="POST" action="{{route('cart.add', ['id'=> $product->id])}}" >
+                        @csrf
+                        <x-primary-button type="submit">Add to Cart</x-primary-button>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -46,7 +48,7 @@
                                         @endif
                                     @endfor
                                 </span>
-                                <span class="ml-2 text-gray-600">- {{ $review->user->name ." ". $review->id}} </span>
+                                <span class="ml-2 text-gray-600">- {{ $review->user->name . ' ' . $review->id }} </span>
                             </div>
                             <span
                                 class="ml-auto text-xs text-gray-400">{{ $review->created_at->diffForHumans() }}</span>
