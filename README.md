@@ -5,7 +5,10 @@ Todo:
 - add to cart (looged in or not logged in)
 - [x] only admin can add items
 - admin can update or delete a product
-- only logged in users can comment
+- only logged in users who bought the product can comment once
+- view comments images, summary of stars
+- add payment
+- [x] sort by categories
 
 
 SCHEMA

@@ -2,10 +2,16 @@
 
     <div class="flex flex-col items-center justify-center w-full h-full ">
         <div class="w-4/5">
-              <h1
-            class="w-4/5 my-4 mr-auto text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl dark:text-white">
-            Browse our products:</h1>
-             <hr class="my-4 border-black shadow-sm border-t-5">
+            @if (request()->routeIs('home'))
+                  <h1 class="w-4/5 my-4 mr-auto text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl dark:text-white">
+                    All products:</h1>
+            @else
+                  <h1 class="w-4/5 my-4 mr-auto text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl dark:text-white">
+    
+                    {{$categories->firstWhere('id', request()->route('id'))->name}}:</h1>
+          
+            @endif
+               <hr class="my-4 border-black shadow-sm border-t-5">
         </div>
       
 

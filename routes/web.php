@@ -8,7 +8,9 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 
-Route::get('/', [ProductController::class, 'getAll'])->name('home');
+Route::get('/products', [ProductController::class, 'getAll'])->name('home');
+
+Route::get('/products/category/{id}', [ProductController::class, 'getWithCategory'])->name('product.category');
 
 Route::get('/dashboard', function () {
     return view('dashboard' );

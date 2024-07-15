@@ -2,19 +2,44 @@
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-21">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="flex items-center shrink-0">
-                    <a href="/">
-                        <x-application-logo class="block w-auto text-gray-800 fill-current h-9" />
-                    </a>
-                </div>
-
+            <div class="flex items-center gap-4 ">
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                {{-- home --}}
+                <div >
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Home') }}
                     </x-nav-link>
+                </div>
+
+                {{-- product categories --}}
+                <div >
+                    <x-dropdown align="left" width="48">
+                        <x-slot name="trigger">
+                            <button
+                                class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none">
+                                <div>Products</div>
+
+                                <div class="ms-1">
+                                    <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+
+                            @foreach ($categories as $category)
+                                <x-dropdown-link :href="route('product.category', ['id' => $category->id])">
+
+                                    {{ $category->name }}
+                                </x-dropdown-link>
+                            @endforeach
+                        </x-slot>
+                    </x-dropdown>
                 </div>
             </div>
 
@@ -26,18 +51,18 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <nav class="flex items-center justify-end flex-1 gap-4 -mx-3">
                     @can('create', App\Models\Product::class)
-                        <a href='{{ route('product.create') }}' class="w-5 transition-transform ">
-                            <svg class="w-[24px] h-[24px] text-gray-800  hover:text-accent-color-1" aria-hidden="true"
+                        <x-nav-link :href="route('product.create')" >
+                            <svg class="w-[24px] h-[24px" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                 viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
                                     d="M12 7.757v8.486M7.757 12h8.486M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
-                        </a>
+                        </x-nav-link>
                     @endcan
 
-                    <a href="#" class="w-5 transition-transform">
-                        <svg class="w-[24px] h-[24px] text-gray-800 hover:text-accent-color-1" aria-hidden="true"
+                    <x-nav-link href="#" >
+                        <svg class="w-[24px] h-[24px]" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
@@ -45,7 +70,7 @@
                         </svg>
 
 
-                    </a>
+                    </x-nav-link>
                     @auth
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">

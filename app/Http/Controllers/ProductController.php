@@ -21,6 +21,13 @@ class ProductController extends Controller
         return view('product-details', ['product' => $product] );  
     }
 
+    public function getWithCategory(string $id)
+    {
+        $products = Product::where('category_id', $id)->get();
+        return view('home', ['products' => $products] );  
+    }
+
+
     public function store(Request $request):RedirectResponse
     {   
     
