@@ -26,11 +26,12 @@ class CartController extends Controller
         }
 
         $cart = json_decode(Cookie::get($user. '-cart'), true) ?? [];
+
         $cart[$product->id] = [
             'id' => $product->id,
             'name' => $product->name,
             'price' => $product->price,
-            'quantity' => 1,
+            'quantity' => isset($cart[$product->id]['quantity'])? $cart[$product->id]['quantity'] + 1 : 1,
             'image' => $product->images()->first()->url,
         ];
 
