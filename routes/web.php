@@ -4,18 +4,16 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Types\Relations\Role;
-use PHPUnit\Framework\Attributes\Group;
+
 
 Route::get('/products', [ProductController::class, 'getAll'])->name('home');
-
+Route::redirect('/', '/products');
 Route::get('/products/category/{id}', [ProductController::class, 'getWithCategory'])->name('product.category');
 
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
 
 Route::get('/dashboard', function () {
