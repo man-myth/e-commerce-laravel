@@ -1,13 +1,15 @@
 Todo:
 
 - [x] View all items in database even not logged in
-- [x]view product details, comments
-- add to cart (looged in or not logged in)
+- [x] view product details, comments
+- [x] add to cart (looged in or not logged in)
 - [x] only admin can add items
-- admin can update or delete a product
-- only logged in users who bought the product can comment once
-- view comments images, summary of stars
-- add payment
+- [ ] seo optimization (slug URL, meta tag, property="og:title", sitemaps)
+- [ ] checkout items
+- [ ] admin can update or delete a product
+- [ ] only logged in users who bought the product can comment once
+- [ ] view comments images, summary of stars
+- [ ] add payment
 - [x] sort by categories
 
 

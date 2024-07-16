@@ -28,7 +28,7 @@ class ProductController extends Controller
     }
 
 
-    public function add(Request $request):RedirectResponse
+    public function store(Request $request):RedirectResponse
     {   
     
        $validated = $request->validate([
@@ -58,5 +58,34 @@ class ProductController extends Controller
         }
     }
        return redirect()->route('product.details', ['id' => $product->id])->with('success', 'Product created successfully!');
+    }
+
+    public function edit(Request $request):RedirectResponse
+    {   
+       $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'tags' => 'nullable|string',
+            'price' => 'required|decimal:0,3|min:0',
+            'stock' => 'required|integer|min:0',
+            'category_id' => 'required|exists:categories,id',
+       ]);
+       //convert tags
+       $tagsArray = explode("," , $validated['tags']);
+       $trimmedTagsArray = array_map('trim', $tagsArray);
+       $validated['tags'] = $trimmedTagsArray;
+
+       //update
+       Product::where('id', $request->route('id'))->update($validated);
+
+       return redirect()->route('product.details', ['id' => $request->route('id')])->with('success', 'Product updated successfully!');
+    }
+
+    public function delete(string $id):RedirectResponse
+    {   
+       //delete
+       Product::destroy($id);
+
+       return redirect()->route('home')->with('success', 'Product deleted successfully!');
     }
 }

@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        FacadesView::composer(['layouts.navigation', 'home'], function (View $view) {
+        FacadesView::composer(['layouts.navigation', 'home', 'product.*'], function (View $view) {
             $categories = Category::all();
             $view->with('categories', $categories);
         });
