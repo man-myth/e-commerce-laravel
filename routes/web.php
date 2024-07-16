@@ -16,6 +16,7 @@ Route::middleware('auth')-> group(function () {
 
     Route::view('/product/store', 'product.create')->can('create', Product::class)->name('product.index');
     Route::post('/product/store', [ProductController::class, 'store'])->can('create', Product::class)->name('product.store');
+    Route::delete('/product/{id}/delete', [ProductController::class, 'delete'])->can('create', Product::class)->name('product.delete');
 
     Route::get('/product/{id}/edit', function(string $id){
         $product = Product::where('id', $id)->first();
