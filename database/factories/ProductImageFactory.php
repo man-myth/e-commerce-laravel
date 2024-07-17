@@ -19,8 +19,9 @@ class ProductImageFactory extends Factory
     {
         $faker = \Faker\Factory::create();
         $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
+        
         return [
-            'url' => $faker->image(dir:public_path('images\products'),width:640, height:480,isFullPath:false),
+            'url' => rand(1,14). '.jpg',
             'product_id' => Product::class
         ];
     }

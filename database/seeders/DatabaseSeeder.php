@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
                 }        
             ]);
 
-            ProductImage::factory()->count(rand(1,4))->create([
+            ProductImage::factory()->create([
                 'product_id' => $p->id,
             ]);
         });

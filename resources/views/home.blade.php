@@ -18,41 +18,42 @@
 
         <div class='grid w-4/5 grid-cols-4 gap-4 my-3'>
             @foreach ($products as $product)
-
-                {{-- admin buttons --}}
-                <div
-                    class="relative overflow-hidden text-left transition-transform bg-white shadow-lg h-72 rounded-2xl hover:-translate-y-1">
-                    <div class="absolute top-0 right-0 z-10 flex mt-2 mr-2 space-x-1">
-                        {{-- edit button --}}
-                        <a href="{{ route('product.edit', ['id' => $product->id]) }}"
-                            class="p-1 text-white rounded-2xl bg-secondary hover:bg-secondary-dark">
-                            <svg class="w-6 h-6 pl-0.5 text-white " aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
-                            </svg>
-
-                        </a>
-
-                        {{-- delete button --}}
-                        <form action="{{ route('product.delete', ['id' => $product->id]) }}" method="POST"
-                            onsubmit="return confirm('Are you sure you want to delete this product?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="p-1 text-white rounded-2xl bg-primary hover:bg-primary-dark">
-                                <svg class="w-6 h-6 px-0.5 text-white " aria-hidden="true"
+                <div class="relative overflow-hidden text-left transition-transform bg-white shadow-lg h-72 rounded-2xl hover:-translate-y-1">
+                    
+                    {{-- admin buttons --}}
+                    @can('create', App\Models\Product::class)
+                        <div class="absolute top-0 right-0 z-10 flex mt-2 mr-2 space-x-1">
+                            {{-- edit button --}}
+                            <a href="{{ route('product.edit', ['id' => $product->id]) }}"
+                                class="p-1 text-white rounded-2xl bg-secondary hover:bg-secondary-dark">
+                                <svg class="w-6 h-6 pl-0.5 text-white " aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2"
-                                        d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+                                        d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
                                 </svg>
 
-                            </button>
-                        </form>
-                    </div>
+                            </a>
+
+                            {{-- delete button --}}
+                            <form action="{{ route('product.delete', ['id' => $product->id]) }}" method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="p-1 text-white rounded-2xl bg-primary hover:bg-primary-dark">
+                                    <svg class="w-6 h-6 px-0.5 text-white " aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+                                    </svg>
+
+                                </button>
+                            </form>
+                        </div>
+                    @endcan
                     {{-- end of admin buttons --}}
 
                     <a href="{{ route('product.details', ['id' => $product->id]) }}">
